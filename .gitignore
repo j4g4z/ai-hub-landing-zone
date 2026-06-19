@@ -1,0 +1,14 @@
+# Azure Developer CLI
+.azure/
+
+# Environment files (may contain secrets)
+*.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
