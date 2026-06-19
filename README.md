@@ -4,6 +4,17 @@ A deployment guide and reference implementation for the **Azure AI Hub Gateway S
 
 > Based on the [`ai-hub-gateway-solution-accelerator`](https://github.com/Azure-Samples/ai-hub-gateway-solution-accelerator/tree/citadel-v1) (citadel-v1 branch).
 
+## 📋 Naming Convention
+
+**All resources in this deployment follow the canonical naming convention defined in [`NAMING.md`](./NAMING.md).** Review it before adding or modifying any resource name or `.bicepparam` value.
+
+## 🌎 Regional Strategy
+
+| Region | Role | Rationale |
+|---|---|---|
+| **Canada Central** | 🎯 Primary — AI LZ + primary AI Foundry | Availability Zones; S2S connectivity termination |
+| **Canada East** | 🔁 Secondary — complementary AI Foundry | Model availability gaps; capacity/networking fallback; Canadian data residency preserved |
+
 ---
 
 ## Architecture Overview
@@ -54,8 +65,8 @@ azd auth login
 azd env select ailz-hub-dev-01
 
 # Set required environment variables
-azd env set AZURE_ENV_NAME      ailz-hub-dev-01
-azd env set AZURE_LOCATION      canadaeast
+azd env set AZURE_ENV_NAME      ailz-dev-01
+azd env set AZURE_LOCATION      canadacentral
 azd env set AZURE_SUBSCRIPTION_ID <your-subscription-id>
 ```
 
@@ -76,7 +87,7 @@ cd ai-hub-gateway-solution-accelerator/bicep/infra/networking-only
 
 az deployment sub create \
   --name aihub-networking \
-  --location canadaeast \
+  --location canadacentral \
   --template-file main.bicep \
   --parameters main.bicepparam
 ```
@@ -138,7 +149,7 @@ Deploy the contract:
 ```bash
 az deployment sub create \
   --name demo-1-dev \
-  --location canadaeast \
+  --location canadacentral \
   --template-file main.bicep \
   --parameters contracts/demo-1/dev/main.bicepparam
 ```

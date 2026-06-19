@@ -16,7 +16,7 @@ cp -r networking-only/ "$INFRA_PATH/"
 
 az deployment sub create \
   --name aihub-networking \
-  --location canadaeast \
+  --location canadacentral \
   --template-file "$INFRA_PATH/networking-only/main.bicep" \
   --parameters "$INFRA_PATH/networking-only/main.bicepparam"
 
@@ -55,7 +55,7 @@ read -rp "Press ENTER once values are updated..."
 
 az deployment sub create \
   --name demo-1-dev \
-  --location canadaeast \
+  --location canadacentral \
   --template-file "$INFRA_PATH/citadel-access-contracts/main.bicep" \
   --parameters "$INFRA_PATH/citadel-access-contracts/contracts/demo-1/dev/main.bicepparam"
 

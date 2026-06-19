@@ -6,8 +6,8 @@
 set -euo pipefail
 
 SUBSCRIPTION_ID="${1:?Usage: $0 <subscription-id>}"
-ENV_NAME="ailz-hub-dev-01"
-LOCATION="canadaeast"
+ENV_NAME="ailz-dev-01"
+LOCATION="canadacentral"
 
 echo "🔐 Logging in to Azure..."
 azd auth login
